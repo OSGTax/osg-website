@@ -219,7 +219,7 @@ section{padding:80px 24px}
 /* ANIMATED COUNTER */
 .counter-glow{text-shadow:0 0 40px rgba(212,197,169,.3)}
 
-/* TAX CALCULATOR */
+/* SE TAX CALCULATOR */
 .calculator{background:var(--white)}
 .calc-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
 .calc-inputs{background:var(--cream);border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:36px}
@@ -229,6 +229,15 @@ section{padding:80px 24px}
   letter-spacing:.3px;margin-bottom:10px}
 .calc-field label span{font-weight:400;color:var(--text-light)}
 
+/* Income input */
+.income-input-wrap{position:relative}
+.income-input-wrap .dollar-sign{position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  font-size:18px;font-weight:700;color:var(--river-deep)}
+.income-input{width:100%;padding:14px 16px 14px 32px;border:1.5px solid rgba(0,0,0,.1);border-radius:8px;
+  background:var(--white);font-family:'Inter',sans-serif;font-size:18px;font-weight:700;
+  color:var(--river-deep);outline:none;transition:border .2s}
+.income-input:focus{border-color:var(--river-light)}
+
 /* Filing status pills */
 .filing-options{display:flex;gap:8px;flex-wrap:wrap}
 .filing-pill{padding:10px 18px;border-radius:8px;border:1.5px solid rgba(0,0,0,.1);background:var(--white);
@@ -237,11 +246,11 @@ section{padding:80px 24px}
 .filing-pill:hover{border-color:var(--river-light);color:var(--river)}
 .filing-pill.active{background:var(--river-deep);color:white;border-color:var(--river-deep)}
 
-/* Income slider */
+/* Expense slider */
 .slider-wrap{position:relative;padding-top:8px}
-.income-display{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--river-deep);
+.expense-display{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--river-deep);
   margin-bottom:12px}
-.income-display .per-yr{font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:var(--text-light)}
+.expense-display .pct{font-family:'Inter',sans-serif;font-size:14px;font-weight:400;color:var(--text-light)}
 input[type="range"]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;
   background:linear-gradient(90deg,var(--river-light),var(--forest));outline:none;cursor:pointer}
 input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;
@@ -252,18 +261,6 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
   border:3px solid var(--river);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .slider-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text-light);margin-top:6px}
 
-/* Situation checkboxes */
-.situation-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.sit-check{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;
-  border:1.5px solid rgba(0,0,0,.08);background:var(--white);cursor:pointer;transition:all .2s;
-  font-size:13px;color:var(--slate);user-select:none}
-.sit-check:hover{border-color:var(--river-light)}
-.sit-check.active{border-color:var(--forest);background:rgba(44,94,63,.06);color:var(--forest)}
-.sit-check .check-box{width:18px;height:18px;border-radius:4px;border:2px solid rgba(0,0,0,.15);
-  display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;
-  font-size:11px;color:transparent}
-.sit-check.active .check-box{background:var(--forest);border-color:var(--forest);color:white}
-
 /* Results card */
 .calc-results{background:linear-gradient(170deg,var(--river-deep) 0%,var(--river) 60%,var(--river-light) 100%);
   border-radius:16px;padding:36px;color:white;position:relative;overflow:hidden}
@@ -273,22 +270,26 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 .calc-results-inner{position:relative}
 .calc-results-label{font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
   color:var(--stone);margin-bottom:20px}
-.savings-amount{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;line-height:1.1;
-  margin-bottom:6px;transition:all .4s}
-.savings-range{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px}
-.deduction-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
-.deduction-item{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:8px;
-  font-size:13px;transition:all .3s}
-.deduction-item.active{background:rgba(255,255,255,.12);border-color:rgba(212,197,169,.3)}
-.deduction-item .ded-label{color:rgba(255,255,255,.8)}
-.deduction-item .ded-amount{font-weight:700;color:var(--stone)}
+.result-big{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1.1;
+  margin-bottom:4px;transition:all .4s}
+.result-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:24px}
+.result-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.result-row{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:8px;font-size:13px}
+.result-row .r-label{color:rgba(255,255,255,.8)}
+.result-row .r-value{font-weight:700;color:var(--stone);white-space:nowrap}
+.result-divider{border:none;border-top:1px solid rgba(255,255,255,.12);margin:4px 0}
+.scorp-savings{background:rgba(44,94,63,.25);border:1px solid rgba(58,122,82,.4);border-radius:10px;
+  padding:16px;margin-bottom:24px}
+.scorp-savings-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--stone);margin-bottom:8px}
+.scorp-savings-amount{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#6ee7a0}
+.scorp-savings-desc{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.4}
 .calc-disclaimer{font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;margin-top:20px;
   padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
 
 @media(max-width:900px){
   .calc-wrapper{grid-template-columns:1fr}
-  .situation-options{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -304,7 +305,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
-      <a href="#calculator">Savings Calculator</a>
+      <a href="#calculator">SE Tax Calculator</a>
       <a href="#cfo">CFO Services</a>
       <a href="#contractors">Contractors</a>
       <a href="#contact">Contact</a>
@@ -402,14 +403,29 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
   </div>
 </section>
 
-<!-- TAX CALCULATOR -->
+<!-- SE TAX CALCULATOR -->
 <section class="calculator" id="calculator">
   <div class="section-inner">
-    <div class="section-label reveal">Savings Estimator</div>
-    <div class="section-title reveal">See What You Could Save</div>
-    <div class="section-desc reveal">Get a quick estimate of potential tax savings with professional preparation. Adjust the inputs below to match your situation.</div>
+    <div class="section-label reveal">Self-Employment Tax Calculator</div>
+    <div class="section-title reveal">Know Your SE Tax &amp; Quarterly Payments</div>
+    <div class="section-desc reveal">If you're a freelancer, contractor, or sole proprietor, self-employment tax is likely your biggest tax surprise. Enter your numbers to see what you owe &mdash; and how much an S-Corp election could save you.</div>
     <div class="calc-wrapper">
       <div class="calc-inputs reveal-left">
+        <div class="calc-field">
+          <label>Gross Self-Employment Income <span>(annual, before expenses)</span></label>
+          <div class="income-input-wrap">
+            <span class="dollar-sign">$</span>
+            <input type="text" class="income-input" id="seGrossIncome" value="120,000" inputmode="numeric">
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Business Expenses <span>(% of gross income)</span></label>
+          <div class="expense-display">$<span id="expenseVal">36,000</span> <span class="pct">(30% of gross)</span></div>
+          <div class="slider-wrap">
+            <input type="range" id="expenseSlider" min="0" max="70" step="5" value="30">
+            <div class="slider-labels"><span>0%</span><span>25%</span><span>50%</span><span>70%</span></div>
+          </div>
+        </div>
         <div class="calc-field">
           <label>Filing Status</label>
           <div class="filing-options">
@@ -418,41 +434,28 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
             <button class="filing-pill" data-status="hoh">Head of Household</button>
           </div>
         </div>
-        <div class="calc-field">
-          <label>Annual Income</label>
-          <div class="income-display">$<span id="incomeVal">75,000</span> <span class="per-yr">/ year</span></div>
-          <div class="slider-wrap">
-            <input type="range" id="incomeSlider" min="25000" max="500000" step="5000" value="75000">
-            <div class="slider-labels"><span>$25K</span><span>$150K</span><span>$300K</span><span>$500K+</span></div>
-          </div>
-        </div>
-        <div class="calc-field">
-          <label>Your Situation <span>(select all that apply)</span></label>
-          <div class="situation-options">
-            <div class="sit-check active" data-sit="w2"><span class="check-box">&#10003;</span>W-2 Employee</div>
-            <div class="sit-check" data-sit="self"><span class="check-box">&#10003;</span>Self-Employed</div>
-            <div class="sit-check" data-sit="rental"><span class="check-box">&#10003;</span>Rental Properties</div>
-            <div class="sit-check" data-sit="construction"><span class="check-box">&#10003;</span>Construction Business</div>
-          </div>
-        </div>
       </div>
       <div class="calc-results reveal-right">
         <div class="calc-results-inner">
-          <div class="calc-results-label">Estimated Annual Savings</div>
-          <div class="savings-amount" id="savingsAmount">$1,200 &ndash; $2,800</div>
-          <div class="savings-range">with professional tax preparation</div>
-          <div class="deduction-list" id="deductionList">
-            <div class="deduction-item active" data-for="standard">
-              <span class="ded-label">Standard deduction optimization</span>
-              <span class="ded-amount">$800 &ndash; $1,500</span>
-            </div>
-            <div class="deduction-item" data-for="credits">
-              <span class="ded-label">Tax credits review</span>
-              <span class="ded-amount">$400 &ndash; $1,300</span>
-            </div>
+          <div class="calc-results-label">Your Self-Employment Tax</div>
+          <div class="result-big" id="seTaxTotal">$11,540</div>
+          <div class="result-sub">in SE tax alone (Social Security + Medicare)</div>
+          <div class="result-grid" id="resultGrid">
+            <div class="result-row"><span class="r-label">Net SE Income</span><span class="r-value" id="rNetIncome">$84,000</span></div>
+            <div class="result-row"><span class="r-label">Social Security (12.4%)</span><span class="r-value" id="rSSTax">$9,622</span></div>
+            <div class="result-row"><span class="r-label">Medicare (2.9%)</span><span class="r-value" id="rMedTax">$2,251</span></div>
+            <div class="result-row"><span class="r-label">Est. Income Tax</span><span class="r-value" id="rIncomeTax">$10,294</span></div>
+            <hr class="result-divider">
+            <div class="result-row" style="background:rgba(255,255,255,.14)"><span class="r-label" style="font-weight:700;color:white">Total Estimated Tax</span><span class="r-value" style="font-size:16px" id="rTotalTax">$21,834</span></div>
+            <div class="result-row"><span class="r-label">Quarterly Payment Due</span><span class="r-value" style="color:#6ee7a0;font-size:15px" id="rQuarterly">$5,459</span></div>
           </div>
-          <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center">Get Your Exact Number &mdash; Free Consult</a>
-          <div class="calc-disclaimer">* This is an illustrative estimate based on common deductions and credits for your filing profile. Actual savings depend on your specific tax situation. A consultation will provide a personalized assessment.</div>
+          <div class="scorp-savings" id="scorpBox">
+            <div class="scorp-savings-label">Potential S-Corp Savings</div>
+            <div class="scorp-savings-amount" id="scorpAmount">$4,414 / year</div>
+            <div class="scorp-savings-desc">By electing S-Corp status and paying yourself a reasonable salary, you could avoid SE tax on distributions. We can help you decide if it's right for you.</div>
+          </div>
+          <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center">Let's Talk About Your Tax Strategy</a>
+          <div class="calc-disclaimer">* Estimates based on 2025 tax rates and brackets. Does not include state taxes, credits, or itemized deductions. The S-Corp estimate assumes a 60/40 salary-to-distribution split. For a personalized analysis, schedule a free consultation.</div>
         </div>
       </div>
     </div>
@@ -615,9 +618,61 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
   counterObserver.observe(el);
 });
 
-// Tax Savings Calculator
+// Self-Employment Tax Calculator
 (function() {
-  var state = { filing: 'single', income: 75000, situations: ['w2'] };
+  var SS_WAGE_BASE = 168600; // 2025 Social Security wage base
+  var SS_RATE = 0.124;
+  var MED_RATE = 0.029;
+  var ADD_MED_THRESHOLD_SINGLE = 200000;
+  var ADD_MED_THRESHOLD_MARRIED = 250000;
+  var ADD_MED_RATE = 0.009;
+  var SE_FACTOR = 0.9235; // 92.35% of net SE income is taxable
+
+  // 2025 tax brackets (single)
+  var BRACKETS_SINGLE = [
+    [11925, 0.10], [48475, 0.12], [103350, 0.22], [197300, 0.24],
+    [250525, 0.32], [626350, 0.35], [Infinity, 0.37]
+  ];
+  var BRACKETS_MARRIED = [
+    [23850, 0.10], [96950, 0.12], [206700, 0.22], [394600, 0.24],
+    [501050, 0.32], [751600, 0.35], [Infinity, 0.37]
+  ];
+  var BRACKETS_HOH = [
+    [17000, 0.10], [64850, 0.12], [103350, 0.22], [197300, 0.24],
+    [250500, 0.32], [626350, 0.35], [Infinity, 0.37]
+  ];
+  var STD_DEDUCTION = { single: 15000, married: 30000, hoh: 22500 };
+
+  var state = { filing: 'single', gross: 120000, expensePct: 30 };
+
+  function parseNum(s) {
+    return parseInt(s.replace(/[^0-9]/g, ''), 10) || 0;
+  }
+  function fmt(n) {
+    return Math.round(n).toLocaleString();
+  }
+
+  // Income input
+  var grossInput = document.getElementById('seGrossIncome');
+  grossInput.addEventListener('input', function() {
+    var raw = parseNum(grossInput.value);
+    state.gross = raw;
+    // Reformat with commas but keep cursor position
+    var pos = grossInput.selectionStart;
+    var oldLen = grossInput.value.length;
+    grossInput.value = raw ? raw.toLocaleString() : '';
+    var newLen = grossInput.value.length;
+    grossInput.setSelectionRange(pos + (newLen - oldLen), pos + (newLen - oldLen));
+    updateCalc();
+  });
+
+  // Expense slider
+  var expSlider = document.getElementById('expenseSlider');
+  var expenseVal = document.getElementById('expenseVal');
+  expSlider.addEventListener('input', function() {
+    state.expensePct = parseInt(expSlider.value);
+    updateCalc();
+  });
 
   // Filing status pills
   document.querySelectorAll('.filing-pill').forEach(function(pill) {
@@ -629,113 +684,105 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
     });
   });
 
-  // Income slider
-  var slider = document.getElementById('incomeSlider');
-  var incomeVal = document.getElementById('incomeVal');
-  slider.addEventListener('input', function() {
-    state.income = parseInt(slider.value);
-    incomeVal.textContent = state.income.toLocaleString();
-    updateCalc();
-  });
-
-  // Situation checkboxes
-  document.querySelectorAll('.sit-check').forEach(function(check) {
-    check.addEventListener('click', function() {
-      check.classList.toggle('active');
-      state.situations = [];
-      document.querySelectorAll('.sit-check.active').forEach(function(c) {
-        state.situations.push(c.getAttribute('data-sit'));
-      });
-      updateCalc();
-    });
-  });
+  function calcIncomeTax(taxableIncome, filing) {
+    var brackets = filing === 'married' ? BRACKETS_MARRIED : filing === 'hoh' ? BRACKETS_HOH : BRACKETS_SINGLE;
+    var tax = 0;
+    var prev = 0;
+    for (var i = 0; i < brackets.length; i++) {
+      var limit = brackets[i][0];
+      var rate = brackets[i][1];
+      var chunk = Math.min(taxableIncome, limit) - prev;
+      if (chunk <= 0) break;
+      tax += chunk * rate;
+      prev = limit;
+    }
+    return tax;
+  }
 
   function updateCalc() {
-    var income = state.income;
+    var gross = state.gross;
+    var expPct = state.expensePct;
     var filing = state.filing;
-    var sits = state.situations;
-    var lowTotal = 0, highTotal = 0;
-    var deductions = [];
 
-    // Base: standard deduction optimization (everyone gets this)
-    var baseLow, baseHigh;
-    if (income <= 50000) { baseLow = 400; baseHigh = 900; }
-    else if (income <= 100000) { baseLow = 800; baseHigh = 1500; }
-    else if (income <= 200000) { baseLow = 1200; baseHigh = 2400; }
-    else if (income <= 350000) { baseLow = 2000; baseHigh = 4000; }
-    else { baseLow = 3000; baseHigh = 6000; }
+    // Net self-employment income
+    var expenses = Math.round(gross * expPct / 100);
+    var netSE = gross - expenses;
+    if (netSE < 0) netSE = 0;
 
-    // Married filing jointly bonus
-    if (filing === 'married') { baseLow = Math.round(baseLow * 1.35); baseHigh = Math.round(baseHigh * 1.35); }
-    if (filing === 'hoh') { baseLow = Math.round(baseLow * 1.15); baseHigh = Math.round(baseHigh * 1.15); }
+    // Update expense display
+    expenseVal.textContent = fmt(expenses);
+    document.querySelector('.expense-display .pct').textContent = '(' + expPct + '% of gross)';
 
-    lowTotal += baseLow; highTotal += baseHigh;
-    deductions.push({ label: 'Standard deduction optimization', low: baseLow, high: baseHigh, key: 'standard' });
+    // SE tax calculation
+    var seTaxableIncome = netSE * SE_FACTOR;
 
-    // Credits review (always shown)
-    var credLow = Math.round(income * 0.005);
-    var credHigh = Math.round(income * 0.015);
-    if (credLow < 200) credLow = 200;
-    if (credHigh < 500) credHigh = 500;
-    if (filing === 'married') { credLow = Math.round(credLow * 1.4); credHigh = Math.round(credHigh * 1.4); }
-    lowTotal += credLow; highTotal += credHigh;
-    deductions.push({ label: 'Tax credits review', low: credLow, high: credHigh, key: 'credits' });
+    // Social Security tax (capped at wage base)
+    var ssTaxable = Math.min(seTaxableIncome, SS_WAGE_BASE);
+    var ssTax = ssTaxable * SS_RATE;
 
-    // Self-employed deductions
-    if (sits.indexOf('self') !== -1) {
-      var selfLow = Math.round(income * 0.02);
-      var selfHigh = Math.round(income * 0.06);
-      if (selfLow < 600) selfLow = 600;
-      if (selfHigh < 1500) selfHigh = 1500;
-      lowTotal += selfLow; highTotal += selfHigh;
-      deductions.push({ label: 'Self-employment deductions (home office, vehicle, health)', low: selfLow, high: selfHigh, key: 'self' });
+    // Medicare tax (no cap)
+    var medTax = seTaxableIncome * MED_RATE;
+
+    // Additional Medicare tax on high earners
+    var addMedThreshold = filing === 'married' ? ADD_MED_THRESHOLD_MARRIED : ADD_MED_THRESHOLD_SINGLE;
+    if (seTaxableIncome > addMedThreshold) {
+      medTax += (seTaxableIncome - addMedThreshold) * ADD_MED_RATE;
     }
 
-    // Rental property
-    if (sits.indexOf('rental') !== -1) {
-      var rentLow = Math.round(income * 0.015);
-      var rentHigh = Math.round(income * 0.045);
-      if (rentLow < 500) rentLow = 500;
-      if (rentHigh < 1200) rentHigh = 1200;
-      lowTotal += rentLow; highTotal += rentHigh;
-      deductions.push({ label: 'Rental property depreciation & expenses', low: rentLow, high: rentHigh, key: 'rental' });
+    var totalSETax = ssTax + medTax;
+
+    // Income tax estimate (simplified)
+    var halfSE = totalSETax / 2; // deductible portion
+    var stdDed = STD_DEDUCTION[filing];
+    var taxableIncome = netSE - halfSE - stdDed;
+    if (taxableIncome < 0) taxableIncome = 0;
+    var incomeTax = calcIncomeTax(taxableIncome, filing);
+
+    var totalTax = totalSETax + incomeTax;
+    var quarterly = totalTax / 4;
+
+    // S-Corp savings estimate (60% salary / 40% distribution)
+    var salaryPct = 0.6;
+    var scorpSalary = netSE * salaryPct;
+    var scorpDist = netSE - scorpSalary;
+    var scorpSSTaxable = Math.min(scorpSalary, SS_WAGE_BASE);
+    var scorpSSTax = scorpSSTaxable * SS_RATE;
+    var scorpMedTax = scorpSalary * MED_RATE;
+    if (scorpSalary > addMedThreshold) {
+      scorpMedTax += (scorpSalary - addMedThreshold) * ADD_MED_RATE;
     }
+    var scorpPayrollTax = scorpSSTax + scorpMedTax;
+    var scorpSavings = totalSETax - scorpPayrollTax;
+    if (scorpSavings < 0) scorpSavings = 0;
 
-    // Construction business
-    if (sits.indexOf('construction') !== -1) {
-      var conLow = Math.round(income * 0.025);
-      var conHigh = Math.round(income * 0.07);
-      if (conLow < 800) conLow = 800;
-      if (conHigh < 2000) conHigh = 2000;
-      lowTotal += conLow; highTotal += conHigh;
-      deductions.push({ label: 'Equipment (Sec. 179), job costs & contractor deductions', low: conLow, high: conHigh, key: 'construction' });
-    }
-
-    // Round to nearest 50
-    lowTotal = Math.round(lowTotal / 50) * 50;
-    highTotal = Math.round(highTotal / 50) * 50;
-
-    // Update savings display with animation
-    var savingsEl = document.getElementById('savingsAmount');
-    savingsEl.style.transform = 'scale(1.05)';
-    savingsEl.style.color = 'var(--stone)';
+    // Update DOM
+    var bigEl = document.getElementById('seTaxTotal');
+    bigEl.style.transform = 'scale(1.05)';
+    bigEl.style.color = 'var(--stone)';
     setTimeout(function() {
-      savingsEl.innerHTML = '$' + lowTotal.toLocaleString() + ' &ndash; $' + highTotal.toLocaleString();
-      savingsEl.style.transform = 'scale(1)';
-      savingsEl.style.color = '';
+      bigEl.textContent = '$' + fmt(totalSETax);
+      bigEl.style.transform = 'scale(1)';
+      bigEl.style.color = '';
     }, 150);
 
-    // Update deduction breakdown
-    var listEl = document.getElementById('deductionList');
-    var html = '';
-    for (var i = 0; i < deductions.length; i++) {
-      var d = deductions[i];
-      html += '<div class="deduction-item active" data-for="' + d.key + '">' +
-        '<span class="ded-label">' + d.label + '</span>' +
-        '<span class="ded-amount">$' + d.low.toLocaleString() + ' &ndash; $' + d.high.toLocaleString() + '</span></div>';
+    document.getElementById('rNetIncome').textContent = '$' + fmt(netSE);
+    document.getElementById('rSSTax').textContent = '$' + fmt(ssTax);
+    document.getElementById('rMedTax').textContent = '$' + fmt(medTax);
+    document.getElementById('rIncomeTax').textContent = '$' + fmt(incomeTax);
+    document.getElementById('rTotalTax').textContent = '$' + fmt(totalTax);
+    document.getElementById('rQuarterly').textContent = '$' + fmt(quarterly);
+    document.getElementById('scorpAmount').textContent = '$' + fmt(scorpSavings) + ' / year';
+
+    // Hide S-Corp box if income too low to matter
+    var scorpBox = document.getElementById('scorpBox');
+    if (netSE < 40000 || scorpSavings < 500) {
+      scorpBox.style.display = 'none';
+    } else {
+      scorpBox.style.display = 'block';
     }
-    listEl.innerHTML = html;
   }
+
+  updateCalc();
 })();
 
 // Form submit
