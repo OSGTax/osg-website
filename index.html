@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSG Tax | Oswegatchie Shoreline Group</title>
+<meta name="description" content="Tax Preparation and CFO Services for Individuals and Construction Businesses — Ogdensburg, NY">
+<meta property="og:title" content="OSG Tax | Oswegatchie Shoreline Group">
+<meta property="og:description" content="Tax Preparation and CFO Services for Individuals and Construction Businesses">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.oshorelinegroup.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --river: #1e3a5f;
+  --river-deep: #132841;
+  --river-light: #2a6496;
+  --forest: #2c5e3f;
+  --forest-light: #3a7a52;
+  --stone: #d4c5a9;
+  --stone-light: #f0ead6;
+  --stone-dark: #b8a88a;
+  --slate: #4a5568;
+  --cream: #faf8f4;
+  --white: #ffffff;
+  --text: #1a202c;
+  --text-light: #64748b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s}
+.nav.scrolled{background:rgba(19,40,65,.97);backdrop-filter:blur(12px)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{color:var(--white);text-decoration:none;display:flex;flex-direction:column}
+.logo-main{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:.5px}
+.logo-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-top:1px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:14px;font-weight:500;
+  letter-spacing:.3px;transition:color .2s}
+.nav-links a:hover{color:var(--stone)}
+.nav-cta{background:var(--stone)!important;color:var(--river-deep)!important;padding:10px 20px;
+  border-radius:6px;font-weight:600!important;transition:all .2s!important}
+.nav-cta:hover{background:var(--white)!important}
+.nav-login{border:1px solid rgba(255,255,255,.3)!important;padding:8px 16px;border-radius:6px;
+  transition:all .2s!important}
+.nav-login:hover{border-color:var(--stone)!important;color:var(--stone)!important}
+.menu-btn{display:none;background:none;border:none;color:white;font-size:28px;cursor:pointer}
+
+/* HERO */
+.hero{background:linear-gradient(170deg,var(--river-deep) 0%,var(--river) 40%,var(--river-light) 100%);
+  color:white;padding:160px 24px 100px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 25 30 30 Q45 35 60 30' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:60px 60px}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;text-align:center}
+.hero-badge{display:inline-block;background:rgba(212,197,169,.15);border:1px solid rgba(212,197,169,.3);
+  color:var(--stone);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;line-height:1.15;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--stone)}
+.hero p{font-size:19px;line-height:1.7;color:rgba(255,255,255,.8);max-width:640px;margin:0 auto 36px}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:600;
+  text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btn-primary{background:var(--stone);color:var(--river-deep)}
+.btn-primary:hover{background:var(--white);transform:translateY(-1px)}
+.btn-outline{border:1.5px solid rgba(255,255,255,.4);color:white;background:none}
+.btn-outline:hover{border-color:var(--stone);color:var(--stone)}
+.btn-green{background:var(--forest);color:white}
+.btn-green:hover{background:var(--forest-light);transform:translateY(-1px)}
+
+/* SECTIONS */
+section{padding:80px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{display:inline-block;color:var(--forest);font-size:12px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;
+  line-height:1.2;margin-bottom:16px;color:var(--river-deep)}
+.section-desc{font-size:17px;line-height:1.7;color:var(--text-light);max-width:640px;margin-bottom:40px}
+
+/* SERVICES GRID */
+.services{background:var(--white)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:var(--cream);border:1px solid rgba(0,0,0,.06);border-radius:12px;
+  padding:32px 28px;transition:all .2s}
+.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.service-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--river),var(--river-light));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  color:white;font-size:22px}
+.service-card h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--river-deep)}
+.service-card p{font-size:14px;line-height:1.6;color:var(--text-light)}
+.service-card.green .service-icon{background:linear-gradient(135deg,var(--forest),var(--forest-light))}
+
+/* PRICING */
+.pricing{background:var(--cream)}
+.pricing-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.price-table{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:12px;overflow:hidden}
+.price-table-header{background:var(--river-deep);color:white;padding:24px 28px}
+.price-table-header h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px}
+.price-table-header p{font-size:13px;opacity:.7}
+.price-table.green .price-table-header{background:var(--forest)}
+.price-row{display:flex;justify-content:space-between;padding:14px 28px;border-bottom:1px solid rgba(0,0,0,.05);
+  font-size:14px;align-items:center}
+.price-row:last-child{border-bottom:none}
+.price-row.header{background:rgba(0,0,0,.02);font-weight:600;color:var(--river-deep);font-size:13px;
+  text-transform:uppercase;letter-spacing:.5px}
+.price-amount{font-weight:600;color:var(--river);white-space:nowrap}
+.price-note{padding:16px 28px;font-size:13px;color:var(--text-light);line-height:1.5;
+  background:rgba(0,0,0,.01);border-top:1px solid rgba(0,0,0,.05)}
+
+/* CFO */
+.cfo{background:linear-gradient(170deg,var(--forest) 0%,#1e4a32 100%);color:white}
+.cfo .section-label{color:var(--stone)}
+.cfo .section-title{color:white}
+.cfo .section-desc{color:rgba(255,255,255,.8)}
+.cfo-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}
+.cfo-item{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:18px 20px}
+.cfo-item .check{color:var(--stone);font-size:18px;min-width:20px;margin-top:1px}
+.cfo-item span{font-size:14px;line-height:1.5}
+
+/* CONTRACTORS */
+.contractors{background:var(--white)}
+.contractors-content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.contractors-text h3{font-family:'Playfair Display',serif;font-size:28px;color:var(--river-deep);margin-bottom:16px}
+.contractors-text p{font-size:15px;line-height:1.7;color:var(--text-light);margin-bottom:24px}
+.contractors-features{display:flex;flex-direction:column;gap:12px}
+.feat{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--slate)}
+.feat .dot{width:8px;height:8px;border-radius:50%;background:var(--forest);min-width:8px}
+.contractors-visual{background:linear-gradient(135deg,var(--river-deep),var(--river));border-radius:16px;
+  padding:48px 36px;color:white;text-align:center}
+.contractors-visual .big-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;
+  color:var(--stone);margin-bottom:8px}
+.contractors-visual p{font-size:15px;opacity:.8}
+
+/* CONTACT */
+.contact{background:var(--river-deep);color:white}
+.contact .section-label{color:var(--stone)}
+.contact .section-title{color:white}
+.contact .section-desc{color:rgba(255,255,255,.7)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:rgba(255,255,255,.7)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 16px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;
+  color:white;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border .2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--stone)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.35)}
+.form-group select{appearance:none;cursor:pointer}
+.form-group select option{background:var(--river-deep);color:white}
+.form-group textarea{resize:vertical;min-height:100px}
+.contact-info{display:flex;flex-direction:column;justify-content:center;gap:32px}
+.contact-block h3{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:16px}
+.contact-block p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:8px}
+.contact-detail{display:flex;gap:10px;align-items:center;font-size:14px;color:rgba(255,255,255,.8);margin-bottom:8px}
+.contact-detail .ic{color:var(--stone);font-size:16px;min-width:20px}
+
+/* FOOTER */
+.footer{background:#0d1b2e;color:rgba(255,255,255,.5);padding:32px 24px;text-align:center;font-size:13px}
+.footer a{color:var(--stone);text-decoration:none}
+
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(19,40,65,.98);
+    flex-direction:column;justify-content:center;gap:20px;padding:24px}
+  .nav-links.open{display:flex}
+  .menu-btn{display:block}
+  .hero h1{font-size:34px}
+  .hero p{font-size:16px}
+  .services-grid{grid-template-columns:1fr}
+  .pricing-tables{grid-template-columns:1fr}
+  .cfo-grid{grid-template-columns:1fr}
+  .contractors-content{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links a{font-size:18px}
+}
+@media(max-width:600px){
+  .hero{padding:130px 20px 70px}
+  .hero h1{font-size:28px}
+  section{padding:56px 20px}
+  .section-title{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-main">OSG Tax</span>
+      <span class="logo-sub">Oswegatchie Shoreline Group</span>
+    </a>
+    <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#cfo">CFO Services</a>
+      <a href="#contractors">Contractors</a>
+      <a href="#contact">Contact</a>
+      <a href="https://app.taxdome.com" target="_blank" class="nav-login">Client Login</a>
+      <a href="#contact" class="nav-cta">Book Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Proudly Serving the North Country</div>
+    <h1>Tax Season, <em>Simplified</em></h1>
+    <p>We help individuals, families, and contractors file with confidence. Whether you're a W-2 employee, a landlord, or running a construction crew &mdash; we've got your back.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">Start Your Return</a>
+      <a href="#contractors" class="btn btn-outline">For Contractors</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Services Built Around You</div>
+    <div class="section-desc">From simple W-2 filings to complex construction bookkeeping, we provide the financial clarity your business and family deserve.</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#9901;</div>
+        <h3>Individual Tax Returns</h3>
+        <p>1040 preparation for W-2 employees, retirees, freelancers, and families. We maximize deductions and handle multi-state filings.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#9878;</div>
+        <h3>Business Tax Returns</h3>
+        <p>Partnership, S-Corp, and C-Corp filings (1065, 1120S, 1120). Strategic tax planning to keep more of what you earn.</p>
+      </div>
+      <div class="service-card green">
+        <div class="service-icon">&#9873;</div>
+        <h3>Bookkeeping</h3>
+        <p>Monthly reconciliations, expense tracking, and financial reporting so you always know where your business stands.</p>
+      </div>
+      <div class="service-card green">
+        <div class="service-icon">&#9670;</div>
+        <h3>CFO Services</h3>
+        <p>Fractional CFO support including cash flow forecasting, budgeting, and strategic financial planning for growing businesses.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#9635;</div>
+        <h3>Payroll Services</h3>
+        <p>Full-service payroll processing, certified payroll for prevailing wage jobs, and quarterly tax filings.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#8644;</div>
+        <h3>AP &amp; AR Management</h3>
+        <p>Accounts payable and receivable management to keep your cash flowing and your vendors and clients in order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Transparent, Time-Based Pricing</div>
+    <div class="section-desc">Our pricing reflects the time and complexity of your return. We provide estimates up front and never surprise you with hidden fees.</div>
+    <div class="pricing-tables">
+      <div class="price-table">
+        <div class="price-table-header">
+          <h3>Individual Returns</h3>
+          <p>1040 Tax Preparation</p>
+        </div>
+        <div class="price-row header"><span>Service</span><span>Starting Price</span></div>
+        <div class="price-row"><span>Base 1040 + 1 State</span><span class="price-amount">$199</span></div>
+        <div class="price-row"><span>Schedule C (Self-Employed)</span><span class="price-amount">+ $150</span></div>
+        <div class="price-row"><span>Schedule E (Rental Properties)</span><span class="price-amount">+ $100 / property</span></div>
+        <div class="price-row"><span>Amended Return (1040X)</span><span class="price-amount">+ $150</span></div>
+        <div class="price-note">Final pricing depends on the complexity of your return. We'll provide a clear estimate before we begin.</div>
+      </div>
+      <div class="price-table green">
+        <div class="price-table-header">
+          <h3>Business Returns</h3>
+          <p>Partnership, S-Corp &amp; C-Corp</p>
+        </div>
+        <div class="price-row header"><span>Entity Type</span><span>Starting Price</span></div>
+        <div class="price-row"><span>Partnership (1065)</span><span class="price-amount">$750</span></div>
+        <div class="price-row"><span>S Corporation (1120S)</span><span class="price-amount">$750</span></div>
+        <div class="price-row"><span>C Corporation (1120)</span><span class="price-amount">$750</span></div>
+        <div class="price-note">Includes consultation, preparation, and e-filing. Complex returns may require additional time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CFO -->
+<section class="cfo" id="cfo">
+  <div class="section-inner">
+    <div class="section-label">Construction CFO Services</div>
+    <div class="section-title">Fractional CFO &amp; Bookkeeping for Contractors</div>
+    <div class="section-desc">Full-service financial support for construction companies &mdash; from job costing and WIP reporting to payroll, forecasting, and strategic tax planning.</div>
+    <div class="cfo-grid">
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Monthly bookkeeping and reconciliations</span></div>
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Work-in-progress (WIP) reporting and job profitability tracking</span></div>
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Certified payroll and prevailing wage support</span></div>
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Cash flow forecasting and budgeting</span></div>
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Quarterly tax planning and year-end strategy</span></div>
+      <div class="cfo-item"><span class="check">&#10003;</span><span>Accounts payable and receivable management</span></div>
+    </div>
+    <a href="#contact" class="btn btn-primary">Schedule a CFO Consult</a>
+  </div>
+</section>
+
+<!-- CONTRACTORS -->
+<section class="contractors" id="contractors">
+  <div class="section-inner">
+    <div class="section-label">Built for Builders</div>
+    <div class="section-title">We Speak Construction</div>
+    <div class="section-desc">We understand the unique financial challenges contractors face &mdash; from job costing to certified payroll to managing cash flow between projects.</div>
+    <div class="contractors-content">
+      <div class="contractors-text">
+        <h3>Your Back Office, Handled</h3>
+        <p>Whether you're a solo contractor or managing a growing crew, we provide the financial foundation you need to stay profitable and compliant year-round.</p>
+        <div class="contractors-features">
+          <div class="feat"><div class="dot"></div>Job costing and project profitability analysis</div>
+          <div class="feat"><div class="dot"></div>Prevailing wage and certified payroll compliance</div>
+          <div class="feat"><div class="dot"></div>Equipment depreciation and Section 179 planning</div>
+          <div class="feat"><div class="dot"></div>Subcontractor 1099 tracking and reporting</div>
+          <div class="feat"><div class="dot"></div>Quarterly estimated tax planning</div>
+        </div>
+      </div>
+      <div class="contractors-visual">
+        <div class="big-num">100%</div>
+        <p>of our clients file on time, every time</p>
+        <br>
+        <a href="#contact" class="btn btn-green">Talk to a Specialist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get Started</div>
+    <div class="section-title">Book Your Free Consultation</div>
+    <div class="section-desc">Tell us a little about yourself and we'll reach out to get you started.</div>
+    <div class="contact-grid">
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" name="name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>I need help with</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option>Individual Tax Return</option>
+            <option>Business Tax Return</option>
+            <option>Bookkeeping</option>
+            <option>CFO Services</option>
+            <option>Payroll</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>How can we help?</label>
+          <textarea name="message" placeholder="Tell us about your situation..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;text-align:center">Send Request</button>
+      </form>
+      <div class="contact-info">
+        <div class="contact-block">
+          <h3>Let's Talk</h3>
+          <p>Whether you need a simple 1040 or a full CFO partnership, we're here to help you navigate the numbers with confidence.</p>
+        </div>
+        <div>
+          <div class="contact-detail"><span class="ic">&#9993;</span> info@oshorelinegroup.com</div>
+          <div class="contact-detail"><span class="ic">&#9990;</span> Ogdensburg, NY</div>
+        </div>
+        <a href="https://app.taxdome.com" target="_blank" class="btn btn-outline" style="text-align:center;border-color:var(--stone);color:var(--stone)">Existing Client? Log In to Portal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>&copy; 2026 Oswegatchie Shoreline Group &mdash; All rights reserved. | <a href="https://app.taxdome.com" target="_blank">Client Portal</a></p>
+</div>
+
+<script>
+// Nav scroll effect
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+nav.classList.add('scrolled');
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+
+// Form submit
+function submitForm(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = 'Sent! We\'ll be in touch.';
+  btn.style.background = 'var(--forest)';
+  btn.style.color = 'white';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
