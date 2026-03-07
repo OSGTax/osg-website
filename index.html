@@ -188,6 +188,36 @@ section{padding:80px 24px}
   section{padding:56px 20px}
   .section-title{font-size:28px}
 }
+
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* Staggered children */
+.stagger-children .reveal{transition-delay:0s}
+.stagger-children .reveal:nth-child(1){transition-delay:.05s}
+.stagger-children .reveal:nth-child(2){transition-delay:.1s}
+.stagger-children .reveal:nth-child(3){transition-delay:.15s}
+.stagger-children .reveal:nth-child(4){transition-delay:.2s}
+.stagger-children .reveal:nth-child(5){transition-delay:.25s}
+.stagger-children .reveal:nth-child(6){transition-delay:.3s}
+
+/* HERO ENTRANCE */
+.hero-enter{opacity:0;transform:translateY(30px);animation:heroIn .9s cubic-bezier(.16,1,.3,1) forwards}
+.hero-badge-enter{animation-delay:.1s}
+.hero-h1-enter{animation-delay:.25s}
+.hero-p-enter{animation-delay:.4s}
+.hero-btns-enter{animation-delay:.55s}
+@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+
+/* ANIMATED COUNTER */
+.counter-glow{text-shadow:0 0 40px rgba(212,197,169,.3)}
 </style>
 </head>
 <body>
@@ -214,10 +244,10 @@ section{padding:80px 24px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Rooted on the River &bull; Proudly Serving the North Country</div>
-    <h1>Tax Season, <em>Simplified</em></h1>
-    <p>From the banks of the Oswegatchie to job sites across the North Country &mdash; we help individuals, families, and contractors file with confidence. Whether you're a W-2 employee, a landlord, or running a construction crew, we've got your back.</p>
-    <div class="hero-btns">
+    <div class="hero-badge hero-enter hero-badge-enter">Rooted on the River &bull; Proudly Serving the North Country</div>
+    <h1 class="hero-enter hero-h1-enter">Tax Season, <em>Simplified</em></h1>
+    <p class="hero-enter hero-p-enter">From the banks of the Oswegatchie to job sites across the North Country &mdash; we help individuals, families, and contractors file with confidence. Whether you're a W-2 employee, a landlord, or running a construction crew, we've got your back.</p>
+    <div class="hero-btns hero-enter hero-btns-enter">
       <a href="https://oswegatchieshorelinegroupllc.taxdome.com/en-us/signup" target="_blank" class="btn btn-primary">Start Your Return</a>
       <a href="#contractors" class="btn btn-outline">For Contractors</a>
     </div>
@@ -227,36 +257,36 @@ section{padding:80px 24px}
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-inner">
-    <div class="section-label">What We Do</div>
-    <div class="section-title">Services Built Around You</div>
-    <div class="section-desc">From simple W-2 filings to complex construction bookkeeping, we provide the financial clarity your business and family deserve.</div>
-    <div class="services-grid">
-      <div class="service-card">
+    <div class="section-label reveal">What We Do</div>
+    <div class="section-title reveal">Services Built Around You</div>
+    <div class="section-desc reveal">From simple W-2 filings to complex construction bookkeeping, we provide the financial clarity your business and family deserve.</div>
+    <div class="services-grid stagger-children">
+      <div class="service-card reveal">
         <div class="service-icon">&#9901;</div>
         <h3>Individual Tax Returns</h3>
         <p>1040 preparation for W-2 employees, retirees, freelancers, and families. We maximize deductions and handle multi-state filings.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">&#9878;</div>
         <h3>Business Tax Returns</h3>
         <p>Partnership, S-Corp, and C-Corp filings (1065, 1120S, 1120). Strategic tax planning to keep more of what you earn.</p>
       </div>
-      <div class="service-card green">
+      <div class="service-card reveal green">
         <div class="service-icon">&#9873;</div>
         <h3>Bookkeeping</h3>
         <p>Monthly reconciliations, expense tracking, and financial reporting so you always know where your business stands.</p>
       </div>
-      <div class="service-card green">
+      <div class="service-card reveal green">
         <div class="service-icon">&#9670;</div>
         <h3>CFO Services</h3>
         <p>Fractional CFO support including cash flow forecasting, budgeting, and strategic financial planning for growing businesses.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">&#9635;</div>
         <h3>Payroll Services</h3>
         <p>Full-service payroll processing, certified payroll for prevailing wage jobs, and quarterly tax filings.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card reveal">
         <div class="service-icon">&#8644;</div>
         <h3>AP &amp; AR Management</h3>
         <p>Accounts payable and receivable management to keep your cash flowing and your vendors and clients in order.</p>
@@ -268,11 +298,11 @@ section{padding:80px 24px}
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section-inner">
-    <div class="section-label">Pricing</div>
-    <div class="section-title">Transparent, Time-Based Pricing</div>
-    <div class="section-desc">Our pricing reflects the time and complexity of your return. We provide estimates up front and never surprise you with hidden fees.</div>
+    <div class="section-label reveal">Pricing</div>
+    <div class="section-title reveal">Transparent, Time-Based Pricing</div>
+    <div class="section-desc reveal">Our pricing reflects the time and complexity of your return. We provide estimates up front and never surprise you with hidden fees.</div>
     <div class="pricing-tables">
-      <div class="price-table">
+      <div class="price-table reveal-left">
         <div class="price-table-header">
           <h3>Individual Returns</h3>
           <p>1040 Tax Preparation</p>
@@ -284,7 +314,7 @@ section{padding:80px 24px}
         <div class="price-row"><span>Amended Return (1040X)</span><span class="price-amount">$150</span></div>
         <div class="price-note">Final pricing depends on the complexity of your return. We'll provide a clear estimate before we begin.</div>
       </div>
-      <div class="price-table green">
+      <div class="price-table reveal-right green">
         <div class="price-table-header">
           <h3>Business Returns</h3>
           <p>Partnership, S-Corp &amp; C-Corp</p>
@@ -302,29 +332,29 @@ section{padding:80px 24px}
 <!-- CFO -->
 <section class="cfo" id="cfo">
   <div class="section-inner">
-    <div class="section-label">Construction CFO Services</div>
-    <div class="section-title">Fractional CFO &amp; Bookkeeping for Contractors</div>
-    <div class="section-desc">Full-service financial support for construction companies &mdash; from job costing and WIP reporting to payroll, forecasting, and strategic tax planning.</div>
-    <div class="cfo-grid">
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Monthly bookkeeping and reconciliations</span></div>
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Work-in-progress (WIP) reporting and job profitability tracking</span></div>
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Certified payroll and prevailing wage support</span></div>
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Cash flow forecasting and budgeting</span></div>
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Quarterly tax planning and year-end strategy</span></div>
-      <div class="cfo-item"><span class="check">&#10003;</span><span>Accounts payable and receivable management</span></div>
+    <div class="section-label reveal">Construction CFO Services</div>
+    <div class="section-title reveal">Fractional CFO &amp; Bookkeeping for Contractors</div>
+    <div class="section-desc reveal">Full-service financial support for construction companies &mdash; from job costing and WIP reporting to payroll, forecasting, and strategic tax planning.</div>
+    <div class="cfo-grid stagger-children">
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Monthly bookkeeping and reconciliations</span></div>
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Work-in-progress (WIP) reporting and job profitability tracking</span></div>
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Certified payroll and prevailing wage support</span></div>
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Cash flow forecasting and budgeting</span></div>
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Quarterly tax planning and year-end strategy</span></div>
+      <div class="cfo-item reveal"><span class="check">&#10003;</span><span>Accounts payable and receivable management</span></div>
     </div>
-    <a href="#contact" class="btn btn-primary">Schedule a CFO Consult</a>
+    <a href="#contact" class="btn btn-primary reveal">Schedule a CFO Consult</a>
   </div>
 </section>
 
 <!-- CONTRACTORS -->
 <section class="contractors" id="contractors">
   <div class="section-inner">
-    <div class="section-label">Built for Builders</div>
-    <div class="section-title">We Speak Construction</div>
-    <div class="section-desc">We understand the unique financial challenges contractors face &mdash; from job costing to certified payroll to managing cash flow between projects.</div>
+    <div class="section-label reveal">Built for Builders</div>
+    <div class="section-title reveal">We Speak Construction</div>
+    <div class="section-desc reveal">We understand the unique financial challenges contractors face &mdash; from job costing to certified payroll to managing cash flow between projects.</div>
     <div class="contractors-content">
-      <div class="contractors-text">
+      <div class="contractors-text reveal-left">
         <h3>Your Back Office, Handled</h3>
         <p>Whether you're a solo contractor or managing a growing crew, we provide the financial foundation you need to stay profitable and compliant year-round.</p>
         <div class="contractors-features">
@@ -335,8 +365,8 @@ section{padding:80px 24px}
           <div class="feat"><div class="dot"></div>Quarterly estimated tax planning</div>
         </div>
       </div>
-      <div class="contractors-visual">
-        <div class="big-num">100%</div>
+      <div class="contractors-visual reveal-scale">
+        <div class="big-num counter-glow" data-target="100">0%</div>
         <p>of our clients file on time, every time</p>
         <br>
         <a href="#contact" class="btn btn-green">Talk to a Specialist</a>
@@ -348,11 +378,11 @@ section{padding:80px 24px}
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-inner">
-    <div class="section-label">Get Started</div>
-    <div class="section-title">Book Your Free Consultation</div>
-    <div class="section-desc">Tell us a little about yourself and we'll reach out to get you started.</div>
+    <div class="section-label reveal">Get Started</div>
+    <div class="section-title reveal">Book Your Free Consultation</div>
+    <div class="section-desc reveal">Tell us a little about yourself and we'll reach out to get you started.</div>
     <div class="contact-grid">
-      <form id="contactForm" onsubmit="submitForm(event)">
+      <form id="contactForm" onsubmit="submitForm(event)" class="reveal-left">
         <div class="form-group">
           <label>Full Name *</label>
           <input type="text" id="cf-name" placeholder="Your full name" required>
@@ -379,7 +409,7 @@ section{padding:80px 24px}
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;text-align:center">Send Request</button>
       </form>
-      <div class="contact-info">
+      <div class="contact-info reveal-right">
         <div class="contact-block">
           <h3>Let's Talk</h3>
           <p>Whether you need a simple 1040 or a full CFO partnership, we're here to help you navigate the numbers with confidence.</p>
@@ -412,6 +442,47 @@ document.querySelectorAll('.nav-links a').forEach(function(a) {
   a.addEventListener('click', function() {
     document.querySelector('.nav-links').classList.remove('open');
   });
+});
+
+// Scroll-triggered reveal animations
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(function(el) {
+  revealObserver.observe(el);
+});
+
+// Animated counter
+var counterObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var el = entry.target;
+      var target = parseInt(el.getAttribute('data-target'));
+      var duration = 1800;
+      var start = performance.now();
+      function update(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        el.textContent = current + '%';
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(function(el) {
+  counterObserver.observe(el);
 });
 
 // Form submit
