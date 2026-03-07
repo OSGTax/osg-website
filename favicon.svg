@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#132841"/>
+  <!-- River wave -->
+  <path d="M0 48 Q8 44 16 46 Q24 48 32 45 Q40 42 48 44 Q56 46 64 43" fill="none" stroke="#2a6496" stroke-width="2" opacity=".6"/>
+  <path d="M0 54 Q10 50 20 52 Q30 54 40 51 Q50 48 60 50 Q64 51 64 51" fill="none" stroke="#2a6496" stroke-width="1.5" opacity=".3"/>
+  <!-- Heron silhouette small -->
+  <g transform="translate(6, 4) scale(0.42)">
+    <path d="M45 75 Q42 60 44 50 Q46 40 50 35 Q54 30 56 20 Q57 15 55 10 Q54 7 58 5 Q62 3 65 6 Q67 8 64 12 Q62 16 60 20 Q58 28 56 35 Q55 40 56 45 Q58 50 62 55 Q66 58 72 60 Q78 61 82 58 Q85 55 83 50 Q82 48 84 47 Q86 48 87 52 Q88 56 85 62 Q80 68 72 68 Q64 68 58 65 Q52 62 48 70 Q46 76 48 82 Q50 88 46 95 Q44 98 42 95 Q40 90 42 85 Q44 80 45 75Z" fill="#d4c5a9"/>
+    <path d="M65 6 L78 4 L65 8Z" fill="#b8a88a"/>
+    <path d="M47 92 L44 110 M44 110 L40 112 M44 110 L48 112" fill="none" stroke="#b8a88a" stroke-width="2" stroke-linecap="round"/>
+    <path d="M50 88 L52 108 M52 108 L48 110 M52 108 L56 110" fill="none" stroke="#b8a88a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- OSG text -->
+  <text x="32" y="58" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#d4c5a9" text-anchor="middle" letter-spacing="2">OSG</text>
+</svg>

@@ -3,12 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OSG Tax | Oswegatchie Shoreline Group</title>
-<meta name="description" content="Tax Preparation and CFO Services for Individuals and Construction Businesses — Ogdensburg, NY">
-<meta property="og:title" content="OSG Tax | Oswegatchie Shoreline Group">
-<meta property="og:description" content="Tax Preparation and CFO Services for Individuals and Construction Businesses">
+<title>OSG | Oswegatchie Shoreline Group</title>
+<meta name="description" content="Tax Preparation, Bookkeeping, and CFO Services for Individuals and Construction Businesses — Ogdensburg, NY">
+<meta property="og:title" content="OSG | Oswegatchie Shoreline Group">
+<meta property="og:description" content="Tax Preparation, Bookkeeping, and CFO Services for Individuals and Construction Businesses">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.oshorelinegroup.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -35,7 +37,9 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream)}
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .3s}
 .nav.scrolled{background:rgba(19,40,65,.97);backdrop-filter:blur(12px)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{color:var(--white);text-decoration:none;display:flex;flex-direction:column}
+.logo{color:var(--white);text-decoration:none;display:flex;align-items:center;gap:12px}
+.logo img{height:44px;width:auto}
+.logo-text{display:flex;flex-direction:column}
 .logo-main{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:.5px}
 .logo-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.7;margin-top:1px}
 .nav-links{display:flex;gap:28px;align-items:center}
@@ -54,8 +58,8 @@ body{font-family:'Inter',sans-serif;color:var(--text);background:var(--cream)}
 .hero{background:linear-gradient(170deg,var(--river-deep) 0%,var(--river) 40%,var(--river-light) 100%);
   color:white;padding:160px 24px 100px;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 Q15 25 30 30 Q45 35 60 30' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='1'/%3E%3C/svg%3E");
-  background-size:60px 60px}
+  background:url("data:image/svg+xml,%3Csvg width='120' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q15 12 30 18 Q45 24 60 16 Q75 8 90 14 Q105 20 120 12' fill='none' stroke='rgba(255,255,255,.04)' stroke-width='1.5'/%3E%3Cpath d='M0 32 Q20 26 40 30 Q60 34 80 28 Q100 22 120 26' fill='none' stroke='rgba(255,255,255,.025)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:120px 40px}
 .hero-inner{max-width:900px;margin:0 auto;position:relative;text-align:center}
 .hero-badge{display:inline-block;background:rgba(212,197,169,.15);border:1px solid rgba(212,197,169,.3);
   color:var(--stone);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;
@@ -192,8 +196,7 @@ section{padding:80px 24px}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="logo">
-      <span class="logo-main">OSG Tax</span>
-      <span class="logo-sub">Oswegatchie Shoreline Group</span>
+      <img src="logo.svg" alt="OSG Logo">
     </a>
     <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
     <div class="nav-links">
@@ -202,7 +205,7 @@ section{padding:80px 24px}
       <a href="#cfo">CFO Services</a>
       <a href="#contractors">Contractors</a>
       <a href="#contact">Contact</a>
-      <a href="https://app.taxdome.com" target="_blank" class="nav-login">Client Login</a>
+      <a href="https://oswegatchieshorelinegroupllc.taxdome.com/login" target="_blank" class="nav-login">Client Login</a>
       <a href="#contact" class="nav-cta">Book Now</a>
     </div>
   </div>
@@ -211,9 +214,9 @@ section{padding:80px 24px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">Proudly Serving the North Country</div>
+    <div class="hero-badge">Rooted on the River &bull; Proudly Serving the North Country</div>
     <h1>Tax Season, <em>Simplified</em></h1>
-    <p>We help individuals, families, and contractors file with confidence. Whether you're a W-2 employee, a landlord, or running a construction crew &mdash; we've got your back.</p>
+    <p>From the banks of the Oswegatchie to job sites across the North Country &mdash; we help individuals, families, and contractors file with confidence. Whether you're a W-2 employee, a landlord, or running a construction crew, we've got your back.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn btn-primary">Start Your Return</a>
       <a href="#contractors" class="btn btn-outline">For Contractors</a>
@@ -383,9 +386,9 @@ section{padding:80px 24px}
         </div>
         <div>
           <div class="contact-detail"><span class="ic">&#9993;</span> info@oshorelinegroup.com</div>
-          <div class="contact-detail"><span class="ic">&#9990;</span> Ogdensburg, NY</div>
+          <div class="contact-detail"><span class="ic">&#9990;</span> Ogdensburg, NY &mdash; Where the Oswegatchie meets the St. Lawrence</div>
         </div>
-        <a href="https://app.taxdome.com" target="_blank" class="btn btn-outline" style="text-align:center;border-color:var(--stone);color:var(--stone)">Existing Client? Log In to Portal</a>
+        <a href="https://oswegatchieshorelinegroupllc.taxdome.com/login" target="_blank" class="btn btn-outline" style="text-align:center;border-color:var(--stone);color:var(--stone)">Existing Client? Log In to Portal</a>
       </div>
     </div>
   </div>
@@ -393,7 +396,7 @@ section{padding:80px 24px}
 
 <!-- FOOTER -->
 <div class="footer">
-  <p>&copy; 2026 Oswegatchie Shoreline Group &mdash; All rights reserved. | <a href="https://app.taxdome.com" target="_blank">Client Portal</a></p>
+  <p>&copy; 2026 Oswegatchie Shoreline Group LLC &mdash; Ogdensburg, NY &mdash; Est. on the shores of the Oswegatchie | <a href="https://oswegatchieshorelinegroupllc.taxdome.com/login" target="_blank">Client Portal</a></p>
 </div>
 
 <script>
