@@ -444,6 +444,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
             <div class="result-row"><span class="r-label">Net SE Income</span><span class="r-value" id="rNetIncome">$84,000</span></div>
             <div class="result-row"><span class="r-label">Social Security (12.4%)</span><span class="r-value" id="rSSTax">$9,622</span></div>
             <div class="result-row"><span class="r-label">Medicare (2.9%)</span><span class="r-value" id="rMedTax">$2,251</span></div>
+            <div class="result-row" style="color:#6ee7a0"><span class="r-label">SE Tax Deduction (50%)</span><span class="r-value" id="rSEDeduction">&minus;$5,770</span></div>
             <div class="result-row"><span class="r-label">Est. Income Tax</span><span class="r-value" id="rIncomeTax">$10,294</span></div>
             <hr class="result-divider">
             <div class="result-row" style="background:rgba(255,255,255,.14)"><span class="r-label" style="font-weight:700;color:white">Total Estimated Tax</span><span class="r-value" style="font-size:16px" id="rTotalTax">$21,834</span></div>
@@ -768,6 +769,7 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
     document.getElementById('rNetIncome').textContent = '$' + fmt(netSE);
     document.getElementById('rSSTax').textContent = '$' + fmt(ssTax);
     document.getElementById('rMedTax').textContent = '$' + fmt(medTax);
+    document.getElementById('rSEDeduction').textContent = '\u2212$' + fmt(halfSE);
     document.getElementById('rIncomeTax').textContent = '$' + fmt(incomeTax);
     document.getElementById('rTotalTax').textContent = '$' + fmt(totalTax);
     document.getElementById('rQuarterly').textContent = '$' + fmt(quarterly);
