@@ -288,8 +288,45 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 .calc-disclaimer{font-size:11px;color:rgba(255,255,255,.4);line-height:1.5;margin-top:20px;
   padding-top:16px;border-top:1px solid rgba(255,255,255,.08)}
 
+/* PAYROLL CALCULATOR */
+.payroll-calc{background:var(--cream)}
+.payroll-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.emp-stepper{display:flex;gap:8px;align-items:center;justify-content:center}
+.emp-stepper button{width:44px;height:44px;border-radius:8px;border:1.5px solid rgba(0,0,0,.1);
+  background:var(--white);font-size:22px;font-weight:700;color:var(--river-deep);cursor:pointer;
+  transition:all .2s;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif}
+.emp-stepper button:hover{border-color:var(--river-light);background:var(--stone-light)}
+.emp-input{width:80px;padding:14px 16px;border:1.5px solid rgba(0,0,0,.1);border-radius:8px;
+  background:var(--white);font-family:'Inter',sans-serif;font-size:18px;font-weight:700;
+  color:var(--river-deep);outline:none;transition:border .2s;text-align:center}
+.emp-input:focus{border-color:var(--river-light)}
+.payroll-savings{background:rgba(44,94,63,.25);border:1px solid rgba(58,122,82,.4);border-radius:10px;
+  padding:16px;margin-bottom:24px}
+.payroll-savings-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--stone);margin-bottom:8px}
+.payroll-savings-amount{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#6ee7a0}
+.payroll-savings-desc{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.4}
+.comp-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);background:var(--white);margin-top:32px}
+.comp-table thead{background:var(--river-deep);color:white}
+.comp-table th{padding:12px 16px;font-size:12px;font-weight:600;text-align:left;letter-spacing:.3px}
+.comp-table th:not(:first-child){text-align:right}
+.comp-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid rgba(0,0,0,.05)}
+.comp-table td:not(:first-child){text-align:right;font-weight:600;white-space:nowrap}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table .osg-row{background:rgba(44,94,63,.06)}
+.comp-table .osg-row td{color:var(--forest);font-weight:700}
+.comp-table .savings-pct{font-size:11px;font-weight:700;color:var(--forest);background:rgba(44,94,63,.1);
+  padding:3px 6px;border-radius:4px;display:inline-block}
+.payroll-estimate-note{display:flex;gap:10px;align-items:flex-start;background:var(--stone-light);
+  border:1px solid var(--stone-dark);border-radius:10px;padding:16px 20px;margin-top:24px;font-size:13px;
+  line-height:1.6;color:var(--slate)}
+.payroll-estimate-note strong{color:var(--river-deep)}
+.payroll-estimate-note .note-icon{font-size:18px;min-width:22px;margin-top:1px}
+
 @media(max-width:900px){
   .calc-wrapper{grid-template-columns:1fr}
+  .payroll-wrapper{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -306,6 +343,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#calculator">SE Tax Calculator</a>
+      <a href="#payroll">Payroll Pricing</a>
       <a href="#cfo">CFO Services</a>
       <a href="#contractors">Contractors</a>
       <a href="#contact">Contact</a>
@@ -457,6 +495,64 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
           </div>
           <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center">Let's Talk About Your Tax Strategy</a>
           <div class="calc-disclaimer">* Estimates based on 2025 tax rates and brackets. Does not include state taxes, credits, or itemized deductions. The S-Corp estimate assumes a 60/40 salary-to-distribution split. For a personalized analysis, schedule a free consultation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAYROLL CALCULATOR -->
+<section class="payroll-calc" id="payroll">
+  <div class="section-inner">
+    <div class="section-label reveal">Payroll Pricing</div>
+    <div class="section-title reveal">Full-Service Payroll, <em style="font-style:italic;color:var(--forest)">Less Than You'd Think</em></div>
+    <div class="section-desc reveal">Unlimited payroll runs, tax filing, direct deposit, W-2s &mdash; all included. Enter your employee count to see what you'll pay and how we compare.</div>
+    <div class="payroll-wrapper">
+      <div class="calc-inputs reveal-left">
+        <div class="calc-field">
+          <label>Number of Employees</label>
+          <div class="emp-stepper">
+            <button onclick="adjustPayrollEmps(-1)" aria-label="Decrease">&minus;</button>
+            <input type="text" class="emp-input" id="payrollEmpCount" value="10" inputmode="numeric">
+            <button onclick="adjustPayrollEmps(1)" aria-label="Increase">+</button>
+          </div>
+        </div>
+        <table class="comp-table" id="payrollCompTable">
+          <thead>
+            <tr>
+              <th>Provider</th>
+              <th>Monthly</th>
+              <th>Annual</th>
+              <th>vs. OSG</th>
+            </tr>
+          </thead>
+          <tbody id="payrollCompBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+        <div class="payroll-estimate-note">
+          <span class="note-icon">&#9432;</span>
+          <div><strong>These are real-world estimates based on published pricing</strong> &mdash; and they're pretty close to what you'll actually pay. That said, every business is a little different. Factors like pay frequency, add-ons, or special compliance needs can nudge costs up or down. <a href="#contact" style="color:var(--river);font-weight:600">Contact us</a> for your exact quote.</div>
+        </div>
+      </div>
+      <div class="calc-results reveal-right">
+        <div class="calc-results-inner">
+          <div class="calc-results-label">Your OSG Payroll Cost</div>
+          <div class="result-big" id="payrollOsgMonthly">$84.50</div>
+          <div class="result-sub">per month &mdash; unlimited payroll runs</div>
+          <div class="result-grid">
+            <div class="result-row"><span class="r-label">Base Fee</span><span class="r-value" id="prBase">$37.00</span></div>
+            <div class="result-row"><span class="r-label">Per Employee</span><span class="r-value" id="prPerEmp">$4.75 &times; 10</span></div>
+            <hr class="result-divider">
+            <div class="result-row" style="background:rgba(255,255,255,.14)"><span class="r-label" style="font-weight:700;color:white">Monthly Total</span><span class="r-value" style="font-size:16px" id="prTotal">$84.50</span></div>
+            <div class="result-row"><span class="r-label">Annual Total</span><span class="r-value" style="color:#6ee7a0;font-size:15px" id="prAnnual">$1,014.00</span></div>
+          </div>
+          <div class="payroll-savings" id="payrollSavingsBox">
+            <div class="payroll-savings-label">Your Avg. Savings vs. Competitors</div>
+            <div class="payroll-savings-amount" id="payrollSavingsAmt">$318 / year</div>
+            <div class="payroll-savings-desc">Compared to the average full-service competitor shown.</div>
+          </div>
+          <a href="#contact" class="btn btn-primary" style="width:100%;text-align:center">Get a Payroll Quote</a>
         </div>
       </div>
     </div>
@@ -785,6 +881,97 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
   }
 
   updateCalc();
+})();
+
+// Payroll Cost Calculator
+(function() {
+  var OSG_BASE = 37;
+  var OSG_PER_EMP = 4.75;
+  var COMPETITORS = [
+    { name: 'Gusto Simple', base: 49, perEmp: 6 },
+    { name: 'Gusto Plus', base: 80, perEmp: 12 },
+    { name: 'OnPay', base: 49, perEmp: 6 },
+    { name: 'QuickBooks Premium', base: 88, perEmp: 10 },
+    { name: 'Paychex Essentials', base: 39, perEmp: 5 },
+    { name: 'ADP RUN Essential', base: 79, perEmp: 5 },
+    { name: 'Rippling', base: 35, perEmp: 8 }
+  ];
+  var prState = { employees: 10 };
+
+  function prFmt(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function updatePayrollCalc() {
+    var emps = prState.employees;
+    var osgMonthly = OSG_BASE + OSG_PER_EMP * emps;
+    var osgAnnual = osgMonthly * 12;
+
+    var bigEl = document.getElementById('payrollOsgMonthly');
+    bigEl.style.transform = 'scale(1.05)';
+    bigEl.style.color = 'var(--stone)';
+    setTimeout(function() {
+      bigEl.textContent = '$' + prFmt(osgMonthly);
+      bigEl.style.transform = 'scale(1)';
+      bigEl.style.color = '';
+    }, 150);
+
+    document.getElementById('prBase').textContent = '$' + prFmt(OSG_BASE);
+    document.getElementById('prPerEmp').textContent = '$' + prFmt(OSG_PER_EMP) + ' \u00d7 ' + emps;
+    document.getElementById('prTotal').textContent = '$' + prFmt(osgMonthly);
+    document.getElementById('prAnnual').textContent = '$' + prFmt(osgAnnual);
+
+    // Build comparison table
+    var tbody = document.getElementById('payrollCompBody');
+    tbody.innerHTML = '';
+    var osgRow = document.createElement('tr');
+    osgRow.className = 'osg-row';
+    osgRow.innerHTML = '<td><strong>OSG (You)</strong></td><td>$' + prFmt(osgMonthly) +
+      '</td><td>$' + prFmt(osgAnnual) + '</td><td>&mdash;</td>';
+    tbody.appendChild(osgRow);
+
+    var totalCompAnnual = 0;
+    COMPETITORS.forEach(function(comp) {
+      var monthly = comp.base + comp.perEmp * emps;
+      var annual = monthly * 12;
+      var pct = ((monthly - osgMonthly) / monthly * 100);
+      totalCompAnnual += annual;
+      var tr = document.createElement('tr');
+      var pctLabel = pct > 0
+        ? '<span class="savings-pct">' + Math.round(pct) + '% more</span>'
+        : '<span style="color:var(--text-light)">&#8212;</span>';
+      tr.innerHTML = '<td>' + comp.name + '</td><td>$' + prFmt(monthly) +
+        '</td><td>$' + prFmt(annual) + '</td><td>' + pctLabel + '</td>';
+      tbody.appendChild(tr);
+    });
+
+    var avgCompAnnual = totalCompAnnual / COMPETITORS.length;
+    var avgSavings = avgCompAnnual - osgAnnual;
+    document.getElementById('payrollSavingsAmt').textContent = '$' + Math.round(avgSavings).toLocaleString() + ' / year';
+  }
+
+  var empInput = document.getElementById('payrollEmpCount');
+  empInput.addEventListener('input', function() {
+    var val = parseInt(empInput.value.replace(/[^0-9]/g, ''), 10);
+    if (isNaN(val) || val < 1) val = 1;
+    if (val > 500) val = 500;
+    prState.employees = val;
+    updatePayrollCalc();
+  });
+  empInput.addEventListener('blur', function() {
+    empInput.value = prState.employees;
+  });
+
+  window.adjustPayrollEmps = function(delta) {
+    var newVal = prState.employees + delta;
+    if (newVal < 1) newVal = 1;
+    if (newVal > 500) newVal = 500;
+    prState.employees = newVal;
+    empInput.value = newVal;
+    updatePayrollCalc();
+  };
+
+  updatePayrollCalc();
 })();
 
 // Form submit
