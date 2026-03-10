@@ -238,7 +238,7 @@ section{padding:80px 24px}
   <div class="section-inner">
     <div class="section-label reveal">Payroll Cost Calculator</div>
     <div class="section-title reveal">Calculate Your Payroll Costs</div>
-    <div class="section-desc reveal">Enter your employee count and pay frequency to see your monthly cost and how it stacks up against the competition.</div>
+    <div class="section-desc reveal">Enter your employee count to see your monthly cost and how it stacks up against full-service competitors. All providers include tax filing, deposits, W-2s, and direct deposit.</div>
     <div class="calc-wrapper">
       <div class="calc-inputs reveal-left">
         <div class="calc-field">
@@ -288,7 +288,7 @@ section{padding:80px 24px}
   <div class="section-inner">
     <div class="section-label reveal">Head-to-Head Comparison</div>
     <div class="section-title reveal">See What You're Saving</div>
-    <div class="section-desc reveal">Monthly cost comparison for full-service payroll. All competitors priced at their base/entry-level plans.</div>
+    <div class="section-desc reveal">Monthly cost comparison for full-service payroll. All competitors priced at their full-service tier (tax filing, deposits, W-2s, direct deposit included).</div>
     <table class="comp-table reveal" id="compTable">
       <thead>
         <tr>
@@ -336,6 +336,8 @@ section{padding:80px 24px}
 
   // Competitor pricing (base/mo + per-employee/mo)
   // For per-run providers (ADP), we calculate based on frequency
+  // All competitors priced at their full-service tier
+  // (employer enters hours, provider handles taxes, filings, W-2s, deposits)
   var COMPETITORS = [
     {
       name: 'Gusto Simple',
@@ -345,8 +347,8 @@ section{padding:80px 24px}
     },
     {
       name: 'Gusto Plus',
-      base: 60,
-      perEmp: 9,
+      base: 80,
+      perEmp: 12,
       perRun: false
     },
     {
@@ -356,9 +358,9 @@ section{padding:80px 24px}
       perRun: false
     },
     {
-      name: 'QuickBooks Core',
-      base: 50,
-      perEmp: 6.50,
+      name: 'QuickBooks Premium',
+      base: 88,
+      perEmp: 10,
       perRun: false
     },
     {
@@ -368,13 +370,10 @@ section{padding:80px 24px}
       perRun: false
     },
     {
-      name: 'ADP Run',
-      // ADP charges per-payroll-run: ~$65/run base + $4/emp/run
-      base: 0,
-      perEmp: 0,
-      perRun: true,
-      runBase: 65,
-      runPerEmp: 4
+      name: 'ADP RUN Essential',
+      base: 79,
+      perEmp: 5,
+      perRun: false
     },
     {
       name: 'Rippling',
@@ -384,24 +383,13 @@ section{padding:80px 24px}
     }
   ];
 
-  var RUNS_PER_MONTH = {
-    weekly: 4.33,
-    biweekly: 2.17,
-    monthly: 1,
-    quarterly: 0.33
-  };
-
   var state = { employees: 10, frequency: 'biweekly' };
 
   function fmt(n) {
     return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
-  function getCompMonthlyCost(comp, employees, frequency) {
-    if (comp.perRun) {
-      var runsPerMonth = RUNS_PER_MONTH[frequency];
-      return (comp.runBase + comp.runPerEmp * employees) * runsPerMonth;
-    }
+  function getCompMonthlyCost(comp, employees) {
     return comp.base + comp.perEmp * employees;
   }
 
@@ -443,7 +431,7 @@ section{padding:80px 24px}
 
     // Add competitors
     COMPETITORS.forEach(function(comp) {
-      var monthly = getCompMonthlyCost(comp, emps, freq);
+      var monthly = getCompMonthlyCost(comp, emps);
       var annual = monthly * 12;
       var savingsAmt = annual - osgAnnual;
       var savingsPct = ((monthly - osgMonthly) / monthly * 100);
@@ -455,7 +443,7 @@ section{padding:80px 24px}
         ? '<span class="savings-pct">' + Math.round(savingsPct) + '% more</span>'
         : '<span style="color:var(--text-light)">&#8212;</span>';
 
-      tr.innerHTML = '<td>' + comp.name + (comp.perRun ? ' <span style="font-size:11px;color:var(--text-light)">(per-run)</span>' : '') +
+      tr.innerHTML = '<td>' + comp.name +
         '</td><td>$' + fmt(monthly) + '</td><td>$' + fmt(annual) + '</td><td>' + pctLabel + '</td>';
       tbody.appendChild(tr);
     });
