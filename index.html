@@ -96,7 +96,7 @@
     {
       "@type": "Question",
       "name": "How much does full-service payroll cost?",
-      "acceptedAnswer": {"@type": "Answer", "text": "Our full-service payroll starts at $37 per month base fee plus $4.75 per employee, with unlimited payroll runs, tax filing, direct deposit, and W-2s included — typically well below Gusto, ADP, Paychex, QuickBooks, and OnPay."}
+      "acceptedAnswer": {"@type": "Answer", "text": "Our full-service payroll uses tiered pricing: a $75 monthly base, plus $15 per employee for the first 10, $13 per employee from 11 to 30, and $11 per employee from 31 to 75. Unlimited payroll runs, multi-state tax filing, direct deposit, certified payroll, quarterly filings, and W-2s are all included. Teams over 75 get a custom quote."}
     },
     {
       "@type": "Question",
@@ -461,8 +461,6 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 .payroll-included-list li::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;
   background:var(--stone)}
 .comp-table .est-mark{color:var(--text-light);font-weight:400}
-.comp-table .cert-incl{font-size:10px;font-weight:700;color:var(--forest);background:rgba(44,94,63,.1);
-  padding:2px 6px;border-radius:4px;margin-left:6px;white-space:nowrap}
 .comp-table .diff-more{font-size:11px;font-weight:700;color:var(--forest);background:rgba(44,94,63,.1);
   padding:3px 6px;border-radius:4px;display:inline-block;white-space:nowrap}
 .comp-table .diff-less{font-size:11px;font-weight:700;color:#b85c3a;background:rgba(184,92,58,.1);
@@ -704,7 +702,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
         <table class="comp-table" id="payrollCompTable">
           <thead>
             <tr>
-              <th>Provider (full-service tier)</th>
+              <th>Provider (full-service)</th>
               <th>Monthly</th>
               <th>Annual</th>
               <th>vs. OSG</th>
@@ -716,7 +714,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
         </table>
         <div class="payroll-estimate-note">
           <span class="note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg></span>
-          <div><strong>Apples-to-apples comparison.</strong> Each competitor is shown at their true full-service tier with a typical <strong>+$50/mo certified-payroll add-on</strong> (needed for prevailing-wage work on every platform except OnPay, which includes it). Rows marked * are third-party estimates because the provider doesn't publish pricing. ADP and Paychex typically also charge one-time setup fees of $1,500&ndash;$3,000 and require annual contracts &mdash; not reflected in the monthly number. <a href="#contact" style="color:var(--river);font-weight:600">Contact us</a> for your exact quote.</div>
+          <div><strong>Apples-to-apples comparison.</strong> Competitor figures reflect full-service tier pricing with typical industry-standard add-ons applied. Real quotes vary with features, pay frequency, promotional discounts, setup, and contract terms &mdash; always ask for a detailed written quote. Rows marked * are third-party estimates. <a href="#contact" style="color:var(--river);font-weight:600">Contact us</a> for your exact OSG quote.</div>
         </div>
       </div>
       <div class="calc-results reveal-right">
@@ -1090,15 +1088,15 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
   ];
   var OSG_MAX = 75;
 
-  // Full-service tiers + typical $50/mo certified-payroll add-on where not included.
-  // ADP and Paychex don't publish pricing; marked estimated.
-  var CERT_ADDON = 50;
+  // Full-service tier pricing with a typical add-on applied so the comparison matches
+  // OSG's all-inclusive scope. ADP and Paychex don't publish pricing — marked estimated.
+  var ADDON = 50;
   var COMPETITORS = [
-    { name: 'OnPay', tier: 'single tier', base: 49, perEmp: 6, certIncluded: true, estimated: false },
-    { name: 'QuickBooks Payroll', tier: 'Premium', base: 85, perEmp: 9, certIncluded: false, estimated: false },
-    { name: 'ADP RUN', tier: 'Complete', base: 59, perEmp: 10, certIncluded: false, estimated: true },
-    { name: 'Gusto', tier: 'Plus', base: 80, perEmp: 12, certIncluded: false, estimated: false },
-    { name: 'Paychex Flex', tier: 'Select', base: 119, perEmp: 12, certIncluded: false, estimated: true }
+    { name: 'OnPay', base: 49, perEmp: 6, estimated: false, skipAddon: true },
+    { name: 'QuickBooks Payroll', base: 85, perEmp: 9, estimated: false },
+    { name: 'ADP RUN', base: 59, perEmp: 10, estimated: true },
+    { name: 'Gusto', base: 80, perEmp: 12, estimated: false },
+    { name: 'Paychex Flex', base: 119, perEmp: 12, estimated: true }
   ];
 
   var prState = { employees: 10 };
@@ -1123,7 +1121,7 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
   }
 
   function competitorMonthly(comp, emps) {
-    var addon = comp.certIncluded ? 0 : CERT_ADDON;
+    var addon = comp.skipAddon ? 0 : ADDON;
     return comp.base + comp.perEmp * emps + addon;
   }
 
@@ -1187,7 +1185,7 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
     tbody.innerHTML = '';
     var osgRow = document.createElement('tr');
     osgRow.className = 'osg-row';
-    osgRow.innerHTML = '<td><strong>OSG (you)</strong> <span class="cert-incl">cert. payroll incl.</span></td>' +
+    osgRow.innerHTML = '<td><strong>OSG (you)</strong></td>' +
       '<td>$' + prFmt(osgMonthly) + '</td>' +
       '<td>$' + prFmt(osgAnnual) + '</td>' +
       '<td>&mdash;</td>';
@@ -1206,11 +1204,8 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
         diffEl = '<span class="diff-less">\u2212$' + Math.abs(Math.round(diff)) + '/mo</span>';
       }
       var star = comp.estimated ? '<span class="est-mark"> *</span>' : '';
-      var certTag = comp.certIncluded
-        ? ' <span class="cert-incl">cert. incl.</span>'
-        : '';
       var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + comp.name + ' <em style="color:var(--text-light);font-style:normal">' + comp.tier + '</em>' + star + certTag + '</td>' +
+      tr.innerHTML = '<td>' + comp.name + star + '</td>' +
         '<td>$' + prFmt(monthly) + '</td>' +
         '<td>$' + prFmt(annual) + '</td>' +
         '<td>' + diffEl + '</td>';
