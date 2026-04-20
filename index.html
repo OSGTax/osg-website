@@ -452,6 +452,22 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
   line-height:1.6;color:var(--slate)}
 .payroll-estimate-note strong{color:var(--river-deep)}
 .payroll-estimate-note .note-icon{font-size:18px;min-width:22px;margin-top:1px}
+.payroll-included{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:16px 18px;margin-bottom:24px}
+.payroll-included-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--stone);margin-bottom:10px}
+.payroll-included-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px}
+.payroll-included-list li{font-size:12px;color:rgba(255,255,255,.85);line-height:1.45;padding-left:16px;position:relative}
+.payroll-included-list li::before{content:'';position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;
+  background:var(--stone)}
+.comp-table .est-mark{color:var(--text-light);font-weight:400}
+.comp-table .cert-incl{font-size:10px;font-weight:700;color:var(--forest);background:rgba(44,94,63,.1);
+  padding:2px 6px;border-radius:4px;margin-left:6px;white-space:nowrap}
+.comp-table .diff-more{font-size:11px;font-weight:700;color:var(--forest);background:rgba(44,94,63,.1);
+  padding:3px 6px;border-radius:4px;display:inline-block;white-space:nowrap}
+.comp-table .diff-less{font-size:11px;font-weight:700;color:#b85c3a;background:rgba(184,92,58,.1);
+  padding:3px 6px;border-radius:4px;display:inline-block;white-space:nowrap}
+@media(max-width:600px){.payroll-included-list{grid-template-columns:1fr}}
 
 @media(max-width:900px){
   .calc-wrapper{grid-template-columns:1fr}
@@ -530,7 +546,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
       <div class="service-card reveal">
         <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Payroll Services</h3>
-        <p>Full-service payroll processing with tax filing, direct deposit, W-2s, and quarterly filings &mdash; all at <a href="#payroll" style="color:var(--river-light);font-weight:600">prices below the big providers</a>.</p>
+        <p>Full-service payroll processing with tax filing, direct deposit, W-2s, and quarterly filings &mdash; <a href="#payroll" style="color:var(--river-light);font-weight:600">transparent tiered pricing</a> that scales with your team.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M14 6a6 6 0 0 1 6 6v3"/></svg></div>
@@ -673,8 +689,8 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
 <section class="payroll-calc" id="payroll">
   <div class="section-inner">
     <div class="section-label reveal">Payroll Pricing</div>
-    <h2 class="section-title reveal">Full-Service Payroll, <em style="font-style:italic;color:var(--forest)">Less Than You'd Think</em></h2>
-    <div class="section-desc reveal">Unlimited payroll runs, tax filing, direct deposit, W-2s &mdash; all included. Enter your employee count to see what you'll pay and how we compare.</div>
+    <h2 class="section-title reveal">Full-Service Payroll, <em style="font-style:italic;color:var(--forest)">Right-Sized Pricing</em></h2>
+    <div class="section-desc reveal">You send us the hours. We run payroll, cut the checks or fund direct deposits, pay the taxes, and file the returns &mdash; and a real accountant signs off on every run. Tiered pricing so it scales with your team.</div>
     <div class="payroll-wrapper">
       <div class="calc-inputs reveal-left">
         <div class="calc-field">
@@ -688,7 +704,7 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
         <table class="comp-table" id="payrollCompTable">
           <thead>
             <tr>
-              <th>Provider</th>
+              <th>Provider (full-service tier)</th>
               <th>Monthly</th>
               <th>Annual</th>
               <th>vs. OSG</th>
@@ -700,25 +716,37 @@ input[type="range"]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;b
         </table>
         <div class="payroll-estimate-note">
           <span class="note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/></svg></span>
-          <div><strong>These are real-world estimates based on published pricing</strong> &mdash; and they're pretty close to what you'll actually pay. That said, every business is a little different. Factors like pay frequency, add-ons, or special compliance needs can nudge costs up or down. <a href="#contact" style="color:var(--river);font-weight:600">Contact us</a> for your exact quote.</div>
+          <div><strong>Apples-to-apples comparison.</strong> Each competitor is shown at their true full-service tier with a typical <strong>+$50/mo certified-payroll add-on</strong> (needed for prevailing-wage work on every platform except OnPay, which includes it). Rows marked * are third-party estimates because the provider doesn't publish pricing. ADP and Paychex typically also charge one-time setup fees of $1,500&ndash;$3,000 and require annual contracts &mdash; not reflected in the monthly number. <a href="#contact" style="color:var(--river);font-weight:600">Contact us</a> for your exact quote.</div>
         </div>
       </div>
       <div class="calc-results reveal-right">
         <div class="calc-results-inner">
           <div class="calc-results-label">Your OSG Payroll Cost</div>
-          <div class="result-big" id="payrollOsgMonthly">$84.50</div>
-          <div class="result-sub">per month &mdash; unlimited payroll runs</div>
-          <div class="result-grid">
-            <div class="result-row"><span class="r-label">Base Fee</span><span class="r-value" id="prBase">$37.00</span></div>
-            <div class="result-row"><span class="r-label">Per Employee</span><span class="r-value" id="prPerEmp">$4.75 &times; 10</span></div>
+          <div class="result-big" id="payrollOsgMonthly">$225.00</div>
+          <div class="result-sub">per month &mdash; unlimited payroll runs, taxes filed, reports included</div>
+          <div class="result-grid" id="prBreakdown">
+            <div class="result-row"><span class="r-label">Monthly base</span><span class="r-value" id="prBase">$75.00</span></div>
+            <div class="result-row" id="prTier1Row"><span class="r-label" id="prTier1Label">Employees 1&ndash;10</span><span class="r-value" id="prTier1">10 &times; $15 &nbsp;=&nbsp; $150.00</span></div>
+            <div class="result-row" id="prTier2Row" hidden><span class="r-label" id="prTier2Label">Employees 11&ndash;30</span><span class="r-value" id="prTier2"></span></div>
+            <div class="result-row" id="prTier3Row" hidden><span class="r-label" id="prTier3Label">Employees 31&ndash;75</span><span class="r-value" id="prTier3"></span></div>
             <hr class="result-divider">
-            <div class="result-row" style="background:rgba(255,255,255,.14)"><span class="r-label" style="font-weight:700;color:white">Monthly Total</span><span class="r-value" style="font-size:16px" id="prTotal">$84.50</span></div>
-            <div class="result-row"><span class="r-label">Annual Total</span><span class="r-value" style="color:#6ee7a0;font-size:15px" id="prAnnual">$1,014.00</span></div>
+            <div class="result-row" style="background:rgba(255,255,255,.14)"><span class="r-label" style="font-weight:700;color:white">Monthly Total</span><span class="r-value" style="font-size:16px" id="prTotal">$225.00</span></div>
+            <div class="result-row"><span class="r-label">Annual Total</span><span class="r-value" style="color:#6ee7a0;font-size:15px" id="prAnnual">$2,700.00</span></div>
           </div>
-          <div class="payroll-savings" id="payrollSavingsBox">
-            <div class="payroll-savings-label">Your Avg. Savings vs. Competitors</div>
-            <div class="payroll-savings-amount" id="payrollSavingsAmt">$318 / year</div>
-            <div class="payroll-savings-desc">Compared to the average full-service competitor shown.</div>
+          <div class="calc-results-inner" id="prEnterprise" hidden style="padding:12px 0">
+            <div class="result-big" style="font-size:26px;line-height:1.3">Enterprise &mdash; let's talk</div>
+            <p style="font-size:14px;color:rgba(255,255,255,.75);margin-top:8px">Teams over 75 get custom pricing that reflects payroll frequency, multi-state complexity, and integration with your bookkeeping. We'll build a quote in one call.</p>
+          </div>
+          <div class="payroll-included">
+            <div class="payroll-included-label">Included at no extra charge</div>
+            <ul class="payroll-included-list">
+              <li>Multi-state tax filing &amp; deposits</li>
+              <li>Certified payroll for prevailing-wage work</li>
+              <li>Unlimited payroll runs &amp; direct deposits</li>
+              <li>Quarterly filings, W-2s, 1099s</li>
+              <li>No setup fees, no annual contract</li>
+              <li>A real accountant on every run</li>
+            </ul>
           </div>
           <a href="#contact" class="btn btn-primary" data-event="cta_payroll_calc" style="width:100%;text-align:center">Get a Payroll Quote</a>
         </div>
@@ -1051,31 +1079,81 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
   updateCalc();
 })();
 
-// Payroll Cost Calculator
+// Payroll Cost Calculator — tiered pricing
 (function() {
-  var OSG_BASE = 37;
-  var OSG_PER_EMP = 4.75;
-  var COMPETITORS = [
-    { name: 'Gusto Simple', base: 49, perEmp: 6 },
-    { name: 'Gusto Plus', base: 80, perEmp: 12 },
-    { name: 'OnPay', base: 49, perEmp: 6 },
-    { name: 'QuickBooks Premium', base: 88, perEmp: 10 },
-    { name: 'Paychex Essentials', base: 39, perEmp: 5 },
-    { name: 'ADP RUN Essential', base: 79, perEmp: 5 },
-    { name: 'Rippling', base: 35, perEmp: 8 }
+  var OSG_BASE = 75;
+  // Marginal brackets: each employee in the bracket pays that rate
+  var OSG_TIERS = [
+    { label: 'Employees 1\u201310', from: 1, to: 10, rate: 15 },
+    { label: 'Employees 11\u201330', from: 11, to: 30, rate: 13 },
+    { label: 'Employees 31\u201375', from: 31, to: 75, rate: 11 }
   ];
+  var OSG_MAX = 75;
+
+  // Full-service tiers + typical $50/mo certified-payroll add-on where not included.
+  // ADP and Paychex don't publish pricing; marked estimated.
+  var CERT_ADDON = 50;
+  var COMPETITORS = [
+    { name: 'OnPay', tier: 'single tier', base: 49, perEmp: 6, certIncluded: true, estimated: false },
+    { name: 'QuickBooks Payroll', tier: 'Premium', base: 85, perEmp: 9, certIncluded: false, estimated: false },
+    { name: 'ADP RUN', tier: 'Complete', base: 59, perEmp: 10, certIncluded: false, estimated: true },
+    { name: 'Gusto', tier: 'Plus', base: 80, perEmp: 12, certIncluded: false, estimated: false },
+    { name: 'Paychex Flex', tier: 'Select', base: 119, perEmp: 12, certIncluded: false, estimated: true }
+  ];
+
   var prState = { employees: 10 };
 
   function prFmt(n) {
     return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  function osgCost(emps) {
+    if (emps < 1) return 0;
+    var total = OSG_BASE;
+    var breakdown = [];
+    OSG_TIERS.forEach(function(t) {
+      var inTier = Math.max(0, Math.min(emps, t.to) - (t.from - 1));
+      if (inTier > 0) {
+        var tierCost = inTier * t.rate;
+        total += tierCost;
+        breakdown.push({ label: t.label, count: inTier, rate: t.rate, subtotal: tierCost });
+      }
+    });
+    return { monthly: total, breakdown: breakdown };
+  }
+
+  function competitorMonthly(comp, emps) {
+    var addon = comp.certIncluded ? 0 : CERT_ADDON;
+    return comp.base + comp.perEmp * emps + addon;
+  }
+
   function updatePayrollCalc() {
     var emps = prState.employees;
-    var osgMonthly = OSG_BASE + OSG_PER_EMP * emps;
+    var breakdownEl = document.getElementById('prBreakdown');
+    var enterpriseEl = document.getElementById('prEnterprise');
+    var bigEl = document.getElementById('payrollOsgMonthly');
+    var subEl = bigEl.nextElementSibling;
+
+    // Enterprise (76+) short-circuits the normal display
+    if (emps > OSG_MAX) {
+      breakdownEl.hidden = true;
+      enterpriseEl.hidden = false;
+      bigEl.textContent = 'Custom';
+      subEl.textContent = 'Teams over 75 get a tailored package';
+      document.getElementById('payrollCompBody').innerHTML =
+        '<tr><td colspan="4" style="padding:18px;text-align:center;color:var(--text-light)">' +
+        'For 75+ employees, competitor pricing varies widely by account manager. ' +
+        '<a href="#contact" style="color:var(--river);font-weight:600">Let\'s scope it together</a>.</td></tr>';
+      return;
+    }
+
+    breakdownEl.hidden = false;
+    enterpriseEl.hidden = true;
+
+    var osg = osgCost(emps);
+    var osgMonthly = osg.monthly;
     var osgAnnual = osgMonthly * 12;
 
-    var bigEl = document.getElementById('payrollOsgMonthly');
     bigEl.style.transform = 'scale(1.05)';
     bigEl.style.color = 'var(--stone)';
     setTimeout(function() {
@@ -1083,9 +1161,24 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
       bigEl.style.transform = 'scale(1)';
       bigEl.style.color = '';
     }, 150);
+    subEl.textContent = 'per month \u2014 unlimited payroll runs, taxes filed, reports included';
 
     document.getElementById('prBase').textContent = '$' + prFmt(OSG_BASE);
-    document.getElementById('prPerEmp').textContent = '$' + prFmt(OSG_PER_EMP) + ' \u00d7 ' + emps;
+
+    // Show/hide tier rows based on what's active
+    ['prTier1', 'prTier2', 'prTier3'].forEach(function(id, i) {
+      var row = document.getElementById(id + 'Row');
+      var entry = osg.breakdown[i];
+      if (entry) {
+        row.hidden = false;
+        document.getElementById(id + 'Label').textContent = entry.label;
+        document.getElementById(id).innerHTML = entry.count + ' \u00d7 $' + entry.rate +
+          ' \u00a0=\u00a0 $' + prFmt(entry.subtotal);
+      } else {
+        row.hidden = true;
+      }
+    });
+
     document.getElementById('prTotal').textContent = '$' + prFmt(osgMonthly);
     document.getElementById('prAnnual').textContent = '$' + prFmt(osgAnnual);
 
@@ -1094,28 +1187,35 @@ document.querySelectorAll('[data-target]').forEach(function(el) {
     tbody.innerHTML = '';
     var osgRow = document.createElement('tr');
     osgRow.className = 'osg-row';
-    osgRow.innerHTML = '<td><strong>OSG (You)</strong></td><td>$' + prFmt(osgMonthly) +
-      '</td><td>$' + prFmt(osgAnnual) + '</td><td>&mdash;</td>';
+    osgRow.innerHTML = '<td><strong>OSG (you)</strong> <span class="cert-incl">cert. payroll incl.</span></td>' +
+      '<td>$' + prFmt(osgMonthly) + '</td>' +
+      '<td>$' + prFmt(osgAnnual) + '</td>' +
+      '<td>&mdash;</td>';
     tbody.appendChild(osgRow);
 
-    var totalCompAnnual = 0;
     COMPETITORS.forEach(function(comp) {
-      var monthly = comp.base + comp.perEmp * emps;
+      var monthly = competitorMonthly(comp, emps);
       var annual = monthly * 12;
-      var pct = ((monthly - osgMonthly) / monthly * 100);
-      totalCompAnnual += annual;
+      var diff = monthly - osgMonthly;
+      var diffEl;
+      if (Math.abs(diff) < 1) {
+        diffEl = '<span style="color:var(--text-light)">&asymp; same</span>';
+      } else if (diff > 0) {
+        diffEl = '<span class="diff-more">+$' + Math.round(diff) + '/mo</span>';
+      } else {
+        diffEl = '<span class="diff-less">\u2212$' + Math.abs(Math.round(diff)) + '/mo</span>';
+      }
+      var star = comp.estimated ? '<span class="est-mark"> *</span>' : '';
+      var certTag = comp.certIncluded
+        ? ' <span class="cert-incl">cert. incl.</span>'
+        : '';
       var tr = document.createElement('tr');
-      var pctLabel = pct > 0
-        ? '<span class="savings-pct">' + Math.round(pct) + '% more</span>'
-        : '<span style="color:var(--text-light)">&#8212;</span>';
-      tr.innerHTML = '<td>' + comp.name + '</td><td>$' + prFmt(monthly) +
-        '</td><td>$' + prFmt(annual) + '</td><td>' + pctLabel + '</td>';
+      tr.innerHTML = '<td>' + comp.name + ' <em style="color:var(--text-light);font-style:normal">' + comp.tier + '</em>' + star + certTag + '</td>' +
+        '<td>$' + prFmt(monthly) + '</td>' +
+        '<td>$' + prFmt(annual) + '</td>' +
+        '<td>' + diffEl + '</td>';
       tbody.appendChild(tr);
     });
-
-    var avgCompAnnual = totalCompAnnual / COMPETITORS.length;
-    var avgSavings = avgCompAnnual - osgAnnual;
-    document.getElementById('payrollSavingsAmt').textContent = '$' + Math.round(avgSavings).toLocaleString() + ' / year';
   }
 
   var empInput = document.getElementById('payrollEmpCount');
